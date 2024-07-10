@@ -1,0 +1,1 @@
+This project is an emulator for the Deuarc CPU architecture, a homework assignment from Dokuz Eylül University. Named after the university's abbreviation, DEU, the emulator simulates the execution of programs written in machine code specific to the Deuarc CPU. It allows developers to test and run programs directly on the emulator.
