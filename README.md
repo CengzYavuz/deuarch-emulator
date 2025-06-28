@@ -117,4 +117,4 @@ data.txt            # Example data memory input (optional)
 
 ## 📧 Contact
 
-Email: [2022510158@ogr.deu.edu.tr](mailto:2022510158@ogr.deu.edu.tr
+Email: [2022510158@ogr.deu.edu.tr](mailto:2022510158@ogr.deu.edu.tr)
