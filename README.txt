@@ -1,18 +1,39 @@
-DEUARC Emulator
-This is a C-based emulator for a simple, hypothetical architecture called DEUARC (DEU Electronic Universal Automatic Reduced Computer). It was created as part of a term project in the CME2206 Computer Architecture course, with the goal of exploring how instruction sets, registers, and memory interact inside a basic computer system.
+🚀 DEUARC Emulator
+DEUARC (DEU Electronic Universal Automatic Reduced Computer) is a C-based emulator for a custom, minimal CPU architecture. It was developed as part of the CME 2206 Computer Architecture course at Dokuz Eylül University to learn low‑level programming, instruction decoding, and memory management in C.
 
-⚠️ This project is primarily for learning purposes. While it runs and emulates DEUARC instructions, there may be bugs or undefined behavior due to manual memory management or edge cases not being fully handled.
+🛠 Project Summary
+Project Title: DEUARC Emulator
 
-Architecture Overview
-The DEUARC computer consists of:
+Institution: Dokuz Eylül University, Faculty of Engineering, Computer Engineering
 
-Instruction Memory: 32 × 11‑bit instructions
+Course: CME 2206 – Computer Architecture
 
-Data Memory: 16 × 4‑bit values
+Date: June 2025
 
-Stack Memory: 16 × 5‑bit values
+🚀 Features
+Instruction Fetch & Decode
 
-Registers:
+Reads fixed-width 11‑bit instructions from a text file
+
+Parses opcode, registers, immediate fields
+
+Instruction Set Support
+
+Control: HLT, JMP, JMR, CAL, RET
+
+Arithmetic & Logic: DBL, DBT, ADD, NOT, XOR, INC
+
+Memory & I/O: LD, ST, IO, TSF
+
+Memory Model
+
+Instruction Memory: 32 words of 11 bits
+
+Data Memory: 16 words of 11 bits
+
+Stack Memory: 16 words of 11 bits
+
+Register File
 
 Program Counter (PC)
 
@@ -24,72 +45,83 @@ Instruction Register (IR)
 
 Input & Output Registers
 
-3 General Purpose Registers (R0, R1, R2)
+3 General‑Purpose Registers (R0, R1, R2)
 
-Instruction Set: Arithmetic, logic, control flow, memory I/O — encoded in 11‑bit format
+Execution Loop
 
-Build Instructions
+Fetch → Decode → Execute until HLT
+
+Simple PC push/pop on CAL/RET
+
+📦 System Architecture
+emulator.c
+
+Main driver: initializes CPU state, loads memory from files, runs the execution loop.
+
+Memory Structures
+
+MEM struct holds three memories as arrays of WORD (dynamically allocated strings).
+
+CMPT struct holds CPU registers and a MEM instance.
+
+Core Functions
+
+InitializeMemory / InitializeComputer
+
+Fetch / Decode / Execute
+
+FreeMemory
+
+🛠️ Build & Run
 Using GCC
-Run:
+bash
+Copy
+Edit
 gcc emulator.c -o deuarc_emulator
+Run the Emulator
+With both instruction & data files
 
-(Optional) With CMake
-A simple CMakeLists.txt can be provided to streamline builds across platforms.
-
-Usage
-You need to provide:
-
-A file with 11‑bit binary instructions (one per line or fixed‑width)
-
-(Optional) A data memory file, also with 11‑bit binary values
-
-Example:
+bash
+Copy
+Edit
 ./deuarc_emulator instructions.txt data.txt
+With only instruction file
 
-If only an instruction file is given:
+bash
+Copy
+Edit
 ./deuarc_emulator instructions.txt
+The emulator reads up to 32 instructions and 16 data words. Each word must be exactly 11 characters of ‘0’ or ‘1’.
 
-Features Implemented
-Instruction fetching and decoding
+⚙️ Limitations & To‑Do
+Partial Implementation: Some opcodes (e.g., ADD, XOR, IO) need full logic.
 
-Register and memory allocation
+Safety: Current strncpy use and uninitialized buffers can cause undefined behavior.
 
-Execution loop with support for selected opcodes:
+Error Handling: No bounds checks for memory/stack overflow or file format errors.
 
-HLT, DBL, DBT, ADD, NOT, XOR, INC
+String Comparisons: Uses == instead of strcmp, should be fixed.
 
-ST, LD, IO, TSF, JMP, CAL, RET, JMR
+🎯 Learning Outcomes
+Hands‑on experience with bit‑level instruction decoding
 
-Simple stack operations with program‑counter push/pop
+Dynamic memory management in C (malloc, calloc, free)
 
-Memory‑mapped data loading from files
+Simulating a basic CPU fetch‑decode‑execute cycle
 
-Limitations & To‑Do
-Some opcodes (ADD, XOR, IO, etc.) are partially or not implemented
+File I/O for memory initialization
 
-Stack overflow/underflow and memory bounds are not fully validated
+📂 File Overview
+File	Description
+emulator.c	Main emulator source code
+instructions.txt	Sample instruction memory initialization
+data.txt	Sample data memory initialization
 
-Many strncpy() and pointer operations are prone to undefined behavior
+📧 Contact
+For questions or suggestions, please reach out to:
 
-GetRegister uses string comparisons incorrectly
+Author: Your Name
 
-Register assignments should use strcpy, not direct pointer assignment
+Email: your.email@ogr.deu.edu.tr
 
-Learning Goals
-This project served as a learning exercise in:
-
-Understanding low‑level memory layout
-
-Simulating CPU micro‑operations
-
-Using C language features like struct, malloc, and file I/O
-
-Files
-emulator.c — Main emulator source file
-
-instructions.txt — Example input instructions (user‑provided)
-
-data.txt — (Optional) data memory initialization
-
-Author Notes
-This was written as part of CME2206 Computer Architecture Project during my third year of Computer Engineering studies. It helped me understand how real CPUs decode and execute instructions — even if the implementation isn’t perfect yet!
+Happy emulating! 🚴
