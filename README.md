@@ -117,5 +117,4 @@ data.txt            # Example data memory input (optional)
 
 ## 📧 Contact
 
-**Ahmed Cengiz**
-Email: [ahmedcengizyavuz@gmail.com](mailto:ahmedcengizyavuz@gmail.com)
+Email: [2022510158@ogr.deu.edu.tr](mailto:2022510158@ogr.deu.edu.tr
